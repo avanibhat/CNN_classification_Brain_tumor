@@ -1,5 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
+import torchvision.models as models
 
 
 class BrainTumorCNN(nn.Module):
@@ -62,3 +63,15 @@ class BrainTumorCNN(nn.Module):
         x = self.fc2(x)
 
         return x
+
+
+def get_resnet18_model(num_classes: int = 4, pretrained: bool = True):
+    model = models.resnet18(pretrained=pretrained)
+    model.fc = nn.Linear(model.fc.in_features, num_classes)
+    return model
+
+
+def get_resnet50_model(num_classes: int = 4, pretrained: bool = True):
+    model = models.resnet50(pretrained=pretrained)
+    model.fc = nn.Linear(model.fc.in_features, num_classes)
+    return model
