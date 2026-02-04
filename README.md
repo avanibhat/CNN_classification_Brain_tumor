@@ -77,8 +77,9 @@ The CNN model consists of:
 | Epochs | Train Accuracy | Test Accuracy | Best Test Accuracy |
 |--------|----------------|----------------|---------------------|
 | 5      | 97.18%         | 70.05%         | 70.05%              |
+| 10     | 96.52%         | 71.57%         | **79.70%** (Epoch 8) |
 
-**Observation**: ResNet18 converged quickly with high train accuracy, but performance varied based on augmentation intensity and class imbalance.
+**Observation**: ResNet18 showed significant improvement with extended training. The best test accuracy of 79.70% was achieved at epoch 8, representing a ~9.7% improvement over the 5-epoch baseline. However, performance slightly decreased in later epochs, suggesting potential overfitting or the need for learning rate scheduling.
 
 
 ---
@@ -128,7 +129,9 @@ Grad-CAM was implemented to understand what regions of the MRI influenced the mo
 | No Tumor          | 0.77      | 0.94   | 0.85     | 105     |
 | Pituitary Tumor   | 1.00      | 0.58   | 0.74     | 74      |
 
-**Observation**: Despite high accuracy overall (70%), poor glioma recall shows a clear performance gap that needs addressing.
+**Observation (5 Epochs)**: Despite high accuracy overall (70%), poor glioma recall shows a clear performance gap that needs addressing.
+
+**Note**: Updated results from the 10-epoch ResNet18 model (best accuracy: 79.70%) are available in the `outputs/Resnet18_confusion.ipynb` notebook. Run the notebook to generate the latest confusion matrix and classification report.
 
 ---
 
@@ -147,7 +150,9 @@ Brain-Tumor-Classification/
 │   └── visualize_gradcam.ipynb
 ├── outputs/
 │   ├── Model_results.ipynb          # Training metrics and accuracy summary
-│   └── visualize_predictions.ipynb  # True vs predicted label visualization
+│   ├── visualize_predictions.ipynb  # True vs predicted label visualization
+│   ├── Resnet18_confusion.ipynb    # ResNet18 confusion matrix and classification report
+│   └── CNN_confusion.ipynb          # Custom CNN confusion matrix and classification report
 ├── src/
 │   ├── __init__.py
 │   ├── eval.py

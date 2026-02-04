@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
     # Train
     trained_model = train_model(
-        model, train_loader, test_loader, device, epochs=5, lr=0.001
+        model, train_loader, test_loader, device, epochs=10, lr=0.001
     )
 
     # Save the model
